@@ -1,0 +1,4 @@
+icaros-light_2.2.9-1/usr/lib/icaros/*
+!icaros-light_2.2.9-1/usr/lib/icaros/S/mount_overlay.sh
+!icaros-light_2.2.9-1/usr/lib/icaros/S/ipon.sh
+
