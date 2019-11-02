@@ -1,2 +1,3 @@
 icaros-light_2.2.9-1/usr/lib/icaros/*
 *.deb
+.install.sh
