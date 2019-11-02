@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Restart Icaros
+Comment=Panic button to restart Icaros Desktop
+Comment[it]=Premere per riavviare Icaros Desktop
+Icon=un-reboot
+Exec=/usr/bin/start-icaros
+Terminal=false
+Type=Application
+Categories=GTK;GNOME;Application;Utility;

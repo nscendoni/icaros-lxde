@@ -1,0 +1,122 @@
+#! /bin/sh
+
+# Icaros Desktop Start Script
+
+#### Functions
+
+usage()
+{
+    echo "usage: icaros [-v parameter value ] | [-a new_parameter value ] | [-l] | [-s] | [-h]"
+}
+
+quitaros()
+{
+    pkill -9 -f AROSBootstrap
+}
+
+checkbool()
+{
+    if [ -e "./Prefs/Env-Archive/Icaros/$filename" ]; then  
+         case $filename in
+            amistart | autoshell | awin | dropbox | fkey | googledrive | guienabled | hosted-daemon |\
+            hosted-fscreen | httpsrv | liveupmode | opaque | sharing | usb | vnc | 68k/autoshell |\
+            68k/coherence | 68k/hsyncpref | 68k/smode | 68k/syncpref | 68k/uaecontrol | 68k/vmasservice |\
+            68k/wanderer | 68k/warning | icinstall/* )
+	      case $value in
+	        True | False ) 
+				;;
+	        * )     echo "?invalid data error for $filename"
+     			echo "Ready."
+			exit
+			;;		
+	      esac
+	     ;;
+	  * )
+	  esac
+    else
+          echo "?Invalid parameter $filename"
+	  exit
+    fi
+}
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -d | --deletevalue )    shift
+                                filename=$1
+				rm -f "./Prefs/Env-Archive/Icaros/$filename"
+	        		echo "Deleted parameter $filename"
+                                ;;
+        -v | --value )          shift
+                                filename=$1
+				value=$2
+				checkbool
+				echo "$value" > "./Prefs/Env-Archive/Icaros/$filename"
+	        		echo "Parameter $filename set to $value"
+				shift
+                                ;;
+        -a | --addvalue )       shift
+                                filename=$1
+				value=$2
+				echo "$value" > "./Prefs/Env-Archive/Icaros/$filename"
+	        		echo "New parameter $filename set to $value"
+				shift
+                                ;;
+        -s | --shutdown )    	quitaros
+				exit
+                                ;;
+        -r | --restart )    	quitaros
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+	-l | --listvalues )	ls -R ./Prefs/Env-Archive/Icaros
+				exit
+				;;
+	-x | --exit )           exit
+				;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
+#### Main
+
+# NETWORKING
+# check for exsistence of aros0 network, linux side
+aros0ck="`ifconfig -a | grep aros0`"
+# check if AROSTCP is meant to run automatically at startup
+arosTck="`more ./Prefs/Env-Archive/AROSTCP/AutoRun`"
+if [ "$aros0ck" = "" ]; then
+ if [ -e "./tap_on.sh" ]; then
+  if [ "$arosTck" = "True" ]; then
+   echo "Enabling networking"
+   sh ./tap_on.sh
+  fi
+ fi
+fi
+
+# this allows running icaros fullscreen on selected distros
+arosFck="`more ./Prefs/Env-Archive/Icaros/hosted-fscreen`"
+fscrn=""
+if [ "$arosFck" = "True" ]; then
+ fscrn="--fullscreen"
+fi
+
+# this reads the contents of envarc:hostedmem to set hosted memory
+hmemory=`cat ./Prefs/Env-Archive/Icaros/hostedmem`
+
+# STARTING ICAROS
+./Arch/linux/AROSBootstrap -m $hmemory $fscrn &
+
+
+# check for setting about Icaros daemon
+# this will allow running Linux programs and scripts from AROS
+aros1ck="`more ./Prefs/Env-Archive/Icaros/hosted-daemon`"
+
+if [ "$aros1ck" = "True" ]; then
+ echo "-------------------------------------------------"
+ echo "Press ctrl+C to halt Icaros daemon when exiting."
+ echo "-------------------------------------------------"
+ sh ./S/icaros_daemon
+fi

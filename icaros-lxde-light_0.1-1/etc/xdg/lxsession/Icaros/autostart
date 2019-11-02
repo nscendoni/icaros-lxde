@@ -1,0 +1,3 @@
+@lxpanel --profile Icaros
+@pcmanfm --desktop --profile Icaros
+@xscreensaver -no-splash

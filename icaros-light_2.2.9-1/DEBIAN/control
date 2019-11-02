@@ -1,0 +1,12 @@
+Package: icaros-light
+Version: 2.2.9-1
+Section: base
+Priority: optional
+Architecture: amd64
+Multi-Arch: foreign
+Depends: libxcursor1:i386, libxxf86vm1:i386,libasound2:i386, libasound2-plugins:i386, net-tools, uml-utilities, iptables-persistent, netfilter-persistent
+Maintainer: Nicola Scendoni <scendoni@email.com>
+Description: Icaros Desktop LXDE Environment
+ Install Icaros Desktop
+ Setup TUN Network
+ Setup Overlay for multi users environments

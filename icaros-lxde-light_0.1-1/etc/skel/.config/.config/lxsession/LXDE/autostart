@@ -1,0 +1,4 @@
+@lxpanel --profile LXDE
+@pcmanfm --desktop --profile LXDE
+@xscreensaver -no-splash
+/home/aros/IcarosDesktop/start-icaros.sh

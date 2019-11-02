@@ -1,0 +1,7 @@
+[Desktop Entry]
+# The names/descriptions should really be better
+Name=Icaros Desktop
+Comment=Icaros AROS Hosted Dektop
+Exec=/usr/bin/startlxde-icaros
+# Icon=
+Type=Application

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Icaros
+Comment=Start Icaros Desktop
+Exec=bash -c "/usr/bin/start-icaros"
+OnlyShowIn=LXDE

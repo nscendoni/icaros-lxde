@@ -1,0 +1,18 @@
+	#!/bin/bash
+
+mkdir -p $HOME/.Env-Archive
+mkdir -p $HOME/.workdir
+mkdir -p $HOME/.Dopus5
+mkdir -p $HOME/.Dopus5-workdir
+
+unshare -rm <<EOF
+
+mount -t overlay overlay -o lowerdir=/usr/lib/icaros/Prefs/Env-Archive-base,upperdir=$HOME/.Env-Archive,workdir=$HOME/.workdir /usr/lib/icaros/Prefs/Env-Archive
+
+mount -t overlay overlay -o lowerdir=/usr/lib/icaros/System/Opus5-base,upperdir=$HOME/.Dopus5,workdir=$HOME/.Dopus5-workdir /usr/lib/icaros/System/Opus5
+
+cd /usr/lib/icaros
+./icaros -r
+
+EOF
+

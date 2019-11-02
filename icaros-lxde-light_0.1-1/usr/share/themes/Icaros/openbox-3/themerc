@@ -1,0 +1,102 @@
+!! Icaros, by Paolo Besser, partly based on Natura by quandar (http://deletefactory.net/quandar)
+
+!! Global Width
+window.handle.width: 4
+
+window.client.padding.width: 8
+window.client.padding.height: 2
+border.Width: 1
+padding.width: 4
+padding.height: 4
+
+window.active.border.color: #dddddd
+window.inactive.border.color: #c7c7c7
+menu.border.color: #d7d7d7
+menu.overlap: 0
+window.frameColor: #ffffff
+window.active.client.color: #ffffff
+window.inactive.client.color: #d7d7d7
+*.text.justify: left
+
+!! Menu
+menu.title.bg: flat gradient split
+menu.title.bg.color: #ffffff
+menu.title.bg.colorTo: #ffffff
+menu.title.text.color: #000000
+
+menu.items.bg: flat solid
+menu.items.bg.color: #f9f2ee
+
+menu.items.text.color: #000000
+menu.items.disabled.text.color: #737573
+
+menu.items.active.bg: flat gradient split
+menu.items.active.bg.color:  #888888
+menu.items.active.bg.colorTo:#888888
+menu.items.active.text.color: #000000
+
+!! Active Windows
+window.active.title.bg: flat gradient border
+window.active.title.bg.color: #ffffff
+window.active.title.bg.colorTo: #ffffff
+window.active.*.bg.border.color: #ffffff
+
+window.active.label.bg: parentrelative
+window.active.label.text.color: #000000
+
+window.active.button.*.bg: parentrelative
+window.active.button.*.bg.color: #000000
+window.active.button.*.image.color: #000000
+window.active.button.*.bg.border.color: #ffffff
+
+window.active.button.hover.bg.color: #bbbbbb
+window.active.button.hover.bg.border.color: #999999
+window.active.button.pressed.bg.color: #ffffff
+window.active.button.pressed.bg.colorTo: #ffffff
+window.active.button.pressed.image.color: #000000
+window.active.button.pressed.bg.border.color: #ffffff
+
+window.active.button.disabled.bg: parentrelative
+window.active.button.disabled.image.color: #d7d7d7
+
+window.active.handle.bg:  parentrelative
+window.active.handle.bg.color:#ffffff
+
+window.*.grip.bg:  flat solid 
+window.*.grip.bg.color: #d7d7d7
+
+window.handle.width: 3
+
+!! Inactive Windows
+window.inactive.title.bg: flat gradient vertical
+window.inactive.title.bg.color: #d7d7d7
+window.inactive.title.bg.colorTo: #d7d7d7
+window.inactive.*.border.color: #d7d7d7
+
+window.inactive.label.bg: parentrelative
+window.inactive.label.text.color: #000000
+
+window.inactive.button.*.bg: parentrelative
+window.inactive.button.*.bg.color: #d7d7d7
+window.inactive.button.*.image.color:  #000000
+window.inactive.button.*.bg.border.color: #d7d7d7
+
+window.inactive.button.pressed.bg.color: #c5c2c5
+window.inactive.button.pressed.bg.border.color: #7b7d7b
+window.inactive.button.pressed.image.color: #999999
+
+window.inactive.button.hover.bg.color: #afb1b2
+window.inactive.button.hover.bg.border.color: #d9dfe4
+window.inactive.button.hover.image.color: #a0a0a0
+window.inactive.button.disabled.bg: parentrelative
+window.inactive.button.disabled.image.color: #dddddd
+
+window.inactive.handle.bg: flat solid
+window.inactive.handle.bg.color: #f9f7f3
+window.inactive.grip.bg:  parentrelative
+
+!! Fonts
+window.active.label.text.font: shadow=n:shadowoffset=1:shadowtint=75
+window.inactive.label.text.font: shadow=n:shadowoffset=1:shadowtint=0
+menu.items.font: 
+menu.title.text.font: shadow=y:shadowoffset=1:shadowtint=75

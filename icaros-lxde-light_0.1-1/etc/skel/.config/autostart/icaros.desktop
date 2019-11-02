@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Icaros
+Comment=Start Icaros Desktop
+Exec=bash -c "sudo /usr/lib/icaros/S/mount_overlay.sh && $HOME/IcarosDesktop/start-icaros.sh"
+OnlyShowIn=LXDE

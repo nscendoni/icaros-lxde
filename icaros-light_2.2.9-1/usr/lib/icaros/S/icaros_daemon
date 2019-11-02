@@ -1,0 +1,17 @@
+#!/bin/bash
+
+while true
+do
+
+ if [ -e "$HOME/.icarosd/runme" ]
+ then
+	program=`cat $HOME/.icarosd/runme`
+	echo "now running " $program
+	bash -c "$program" &
+	rm $HOME/.icarosd/runme
+ fi
+
+sleep 1
+
+done
+

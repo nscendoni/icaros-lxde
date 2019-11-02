@@ -1,0 +1,12 @@
+Package: icaros-lxde-light
+Version: 2.2.9-1
+Section: base
+Priority: optional
+Architecture: amd64
+Multi-Arch: foreign
+Depends: lxde, icaros-light, imagemagick-6.q16
+Maintainer: Nicola Scendoni <scendoni@email.com>
+Description: Icaros Desktop LXDE Environment
+ When you need some sunshine, just run this
+ small program!
+

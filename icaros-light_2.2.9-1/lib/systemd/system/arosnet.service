@@ -1,0 +1,14 @@
+[Unit]
+Description=Icaros Network TUN Device
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+Restart=never
+RestartSec=1
+User=root
+ExecStart=/usr/lib/icaros/S/ipon.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Add  new group for aros (required for networking)
+groupadd aros
+
+chown -R root:aros /usr/lib/icaros/
+
+# Add existing users to aros group
+USERS=$(eval getent passwd {$(awk '/^UID_MIN/ {print $2}' /etc/login.defs)..$(awk '/^UID_MAX/ {print $2}' /etc/login.defs)} | cut -d: -f1)
+
+for USER in $USERS; do usermod -a -G aros $USER; done
+
+# enable aros net
+systemctl daemon-reload
+systemctl enable arosnet
+systemctl start arosnet
+
+# Save for next boot
+netfilter-persistent save
+

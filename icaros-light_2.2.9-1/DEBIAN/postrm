@@ -1,0 +1,3 @@
+groupdel aros
+
+systemctl disable arosnet
