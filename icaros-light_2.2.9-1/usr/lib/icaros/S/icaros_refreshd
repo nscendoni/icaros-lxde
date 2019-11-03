@@ -1,12 +1,6 @@
 #!/bin/sh
-
-# This daemon refresh the screen of Icaros by calling the Arexx dopus script
-# It has to run on Icaros
-# It refresh the screen when it find the file: $REFRESH
-# It exit when it find the file: $BREAK
-
-REFRESH="/MyWorkspace/.refresh"
-BREAK="/MyWorkspace/.break"
+REFRESH="MyWorkspace:/.refresh"
+BREAK="MyWorkspace:/.break"
 while true 
 do
 	echo "waiting for refresh event..."
@@ -16,8 +10,10 @@ do
 		rm $REFRESH
 	fi
 	if test -f "$BREAK"; then
-		echo "Break file found. Exiting..."
+			echo "Break file found. Exiting..."
 		break
 	fi
 	sleep 1
 done
+
+rm $BREAK

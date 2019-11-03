@@ -12,7 +12,10 @@ mount -t overlay overlay -o lowerdir=/usr/lib/icaros/Prefs/Env-Archive-base,uppe
 mount -t overlay overlay -o lowerdir=/usr/lib/icaros/System/Opus5-base,upperdir=$HOME/.Dopus5,workdir=$HOME/.Dopus5-workdir /usr/lib/icaros/System/Opus5
 
 cd /usr/lib/icaros
-./icaros -r
+./icaros -r 2>&1 >/tmp/icaros.log&
+
+cd /usr/lib/icaros/S
+./icaros_daemon 2>&1 >/tmp/icaros_daemon.log &
 
 EOF
 
