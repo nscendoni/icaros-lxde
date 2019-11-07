@@ -1,0 +1,5 @@
+; place your startup commands here
+; beware of the fact that in Icaros Desktop, user-startup
+; is executed after the default file manager has loaded.
+
+run S:icaros_refreshd >NIL:

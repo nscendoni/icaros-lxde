@@ -1,0 +1,22 @@
+Lab Start
+
+	If EXISTS MyWorkspace:.refresh
+		; echo "Refresh screen"
+		System:Rexxc/rx DOPUS5:Arexx/refresh.dopus5
+		Sys:System/Scout/Scout COMMAND="CxDisappear AmiStart"
+		Sys:System/Scout/Scout COMMAND="CxAppear AmiStart"
+		delete MyWorkspace:.refresh >NIL:
+	EndIf
+
+	If EXISTS MyWorkspace:.break
+		; echo "Break found"
+		delete MyWorkspace:.break >NIL:
+		skip End
+	EndIf
+
+	wait 1
+	; Echo "Wait 1 sec..."
+
+Skip Start Back
+
+Lab End
