@@ -1,21 +1,49 @@
-	#!/bin/bash
+#!/bin/bash
 
-mkdir -p $HOME/.Env-Archive
-mkdir -p $HOME/.workdir
-mkdir -p $HOME/.Dopus5
-mkdir -p $HOME/.Dopus5-workdir
+export ENV_ARCHIVE=$HOME/.Env-Archive
+export ENV_ARCHIVE_WORK=${ENV_ARCHIVE}-workdir
+export ENV_ARCHIVE_BASE=/usr/lib/icaros/Prefs/Env-Archive-base
+export DOPUS=$HOME/.Dopus5
+export DOPUS_WORK=${DOPUS}-workdir
+export DOPUS_WORK_BASE=/usr/lib/icaros/System/Opus5-base
+
+mkdir -p $ENV_ARCHIVE
+mkdir -p $ENV_ARCHIVE_WORK
+mkdir -p $DOPUS
+mkdir -p $DOPUS_WORK
+
+if pgrep AROSBootstrap >/dev/null
+then
+	pkill AROSBootstrap
+fi
+
+if pgrep icaros_daemon >/dev/null
+then
+        pkill icaros_daemon
+fi
+
+if pgrep clean_desktop.sh >/dev/null
+then
+        pkill clean_desktop.sh
+fi
+		
 
 unshare -rm <<EOF
 
-mount -t overlay overlay -o lowerdir=/usr/lib/icaros/Prefs/Env-Archive-base,upperdir=$HOME/.Env-Archive,workdir=$HOME/.workdir /usr/lib/icaros/Prefs/Env-Archive
+mount -t overlay overlay -o lowerdir=${ENV_ARCHIVE_BASE},upperdir=${ENV_ARCHIVE},workdir=${ENV_ARCHIVE_WORK} /usr/lib/icaros/Prefs/Env-Archive
 
-mount -t overlay overlay -o lowerdir=/usr/lib/icaros/System/Opus5-base,upperdir=$HOME/.Dopus5,workdir=$HOME/.Dopus5-workdir /usr/lib/icaros/System/Opus5
+mount -t overlay overlay -o lowerdir=${DOPUS_WORK_BASE},upperdir=${DOPUS},workdir=${DOPUS_WORK} /usr/lib/icaros/System/Opus5
 
 cd /usr/lib/icaros
 ./icaros -r 2>&1 >/tmp/icaros.log&
 
 cd /usr/lib/icaros/S
 ./icaros_daemon 2>&1 >/tmp/icaros_daemon.log &
+
+if [ -f /usr/lib/icaros/S/clean_desktop.sh ]
+then
+	/usr/lib/icaros/S/clean_desktop.sh &
+fi
 
 EOF
 

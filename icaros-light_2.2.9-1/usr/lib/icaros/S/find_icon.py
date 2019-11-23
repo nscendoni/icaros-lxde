@@ -10,4 +10,4 @@ icon = icon_theme.lookup_icon(icon_name, 48, 0)
 if icon:
     print(icon.get_filename())
 else:
-    print("not found")
+    print("/usr/lib/icaros/System/Hosted/HostApp.info")

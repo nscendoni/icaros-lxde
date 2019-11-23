@@ -3,8 +3,12 @@
 echo begin log>/tmp/log
 
 # Configuration
-desktop=$HOME/Desktop
+export XDG_CONFIG_HOME="$HOME/.config"
+source $XDG_CONFIG_HOME/user-dirs.dirs
+desktop=$XDG_DESKTOP_DIR
 MyWorkspace=$HOME
+
+echo dekstop=$desktop >>/tmp/log
 
 # Iconify Event - Get informations
 active_window=`xdotool getactivewindow`
@@ -24,6 +28,10 @@ fi
 desktop_file=`grep -l $process_name /usr/share/applications/*.desktop|head -1`
 desktop_icon_name=`grep Icon $desktop_file|sed s/Icon=//`
 icon_name=`/usr/lib/icaros/S/find_icon.py $desktop_icon_name`
+if [ -z "$icon_name" ]
+then
+	icon_name=/usr/lib/icaros/System/Hosted/HostApp.png
+fi
 
 echo "desktop_file=$desktop_file" >>/tmp/log
 echo "icon_name=$icon_name" >>/tmp/log
