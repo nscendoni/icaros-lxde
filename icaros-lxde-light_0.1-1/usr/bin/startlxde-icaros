@@ -37,6 +37,11 @@ if [ ! -d $XDG_CONFIG_HOME/lxterminal ]; then
         cp -r /etc/xdg/lxterminal $XDG_CONFIG_HOME/
 fi
 
+# Copy gtk2 Icon's Theme
+if [ ! -f $HOME/.gtkrc-2.0 ]; then
+	cat /etc/xdg/Icaros/.gtkrc-2.0 >$HOME/.gtkrc-2.0
+fi
+
 # Ensure the existance of the 'Desktop' folder
 if [ -e "$XDG_CONFIG_HOME/user-dirs.dirs" ]; then
 	. "$XDG_CONFIG_HOME/user-dirs.dirs"
